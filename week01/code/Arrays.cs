@@ -8,12 +8,23 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Create a fixed array of doubles with size 'length'.
+        // 2. Loop through each index from 0 to length-1.
+        // 3. At each index i, the multiple we want is 'number' times (i + 1),
+        //    since the first item (index 0) should be 1 times number,
+        //    the second item (index 1) should be 2 times number, and so on.
+        // 4. Store that value in the array at index i.
+        // 5. Return the completed array.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +36,21 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. The last 'amount' items in the list need to move to the front,
+        //    while everything else keeps its relative order and slides
+        //    'amount' positions to the right.
+        // 2. Take a copy of the last 'amount' items using GetRange, starting
+        //    at index (data.Count - amount).
+        // 3. Remove those same items from the end of the list using RemoveRange.
+        // 4. Insert the copied items back at the beginning of the list (index 0)
+        //    using InsertRange. This shifts the remaining original items to the
+        //    right automatically.
+        // 5. Because 'data' is modified directly (not returned), there is
+        //    nothing to return - the caller's list is updated in place.
+
+        List<int> endItems = data.GetRange(data.Count - amount, amount);
+        data.RemoveRange(data.Count - amount, amount);
+        data.InsertRange(0, endItems);
     }
 }
